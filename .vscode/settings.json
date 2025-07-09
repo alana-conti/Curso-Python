@@ -1,0 +1,6 @@
+{
+    "python.analysis.extraPaths": [
+        "./Seção 7 - Funções em Python",
+        "./Seção 11 - Trabalhando com Módulos e Pacotes Python/geek"
+    ]
+}
