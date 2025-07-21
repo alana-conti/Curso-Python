@@ -323,17 +323,3 @@ user = Usuario('Felicity', 'Jones', 'felicity@gmail.com', '123456')
 print(Usuario.contador)
 
 print(Usuario.definicao())
-
-
-"""    @property
-    def voltagem(self):
-        return self.__voltagem
-    
-    @property
-    def cor(self):
-        return self.__cor
-    
-    @property
-    def ligada(self):
-        return self.__ligada
-"""
