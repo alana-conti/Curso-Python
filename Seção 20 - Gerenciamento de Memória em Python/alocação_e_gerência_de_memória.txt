@@ -1,0 +1,57 @@
+Alocação e Gerência de Memória em Python
+
+- Em Python tudo é um objeto, o qual a linguagem aloca na memória.
+- Mesmo que se crie outra variável com o mesmo valor já alocado em memória,
+ele apontará para o primeiro, utilizando assim, de forma inteligente o espaço
+de memória.
+    - Ou seja, Python inteligentemente reutiliza valores já alocados para novos 
+    valores, economizando espaço em memória!
+
+# Como isso funciona por baixo do capô?
+
+- Memória Ram se divide em:
+    - Espaço reservado ao: Sistema Operacional, Aplicativos e Memória Compartilhada;
+    - Memória Stack;
+    - Memória Heap.
+
+- Na Memória Stack -> se aloca um frame relativo ao programa principal em desenvolvimento (y);
+    - Depois de executado o programa o frame sai da memória stack
+- Na Memória Heap -> se alocam as variáveis para as quais o programa apontará (valor relativo ao y -> 5).
+
+# O que acontece com os dados em memória quando não são mais referenciados por nenhum objeto?
+
+-> Quando nenhum frame/variável aponta mais para aquele objeto ele se torna um Dead Object 
+e entra em ação o:
+    - Garbage Collector que encontra e anula aquele objeto.
+        - O algoritmo utilizado pelo Garbage Collector do Python é chamado de Reference Counting;
+        - Diferentes linguagens de programação utilizam diferentes algoritmos para o Garbage Collector;
+        - Até mesmo diferentes implementações da linguagem Python utilizam diferentes implementações
+        para o Garbage Collector: CPython, PyPy, IronPython, Stackless, Jython...
+
+#  Comparando Python e outras linguagens como Java e C
+
+|                    |                PYTHON                 |                  JAVA / C                  |
+-----------------------------------------------------------------------------------------------------------
+| Declaração         | x = 10                                | int x = 10;                                |
+-----------------------------------------------------------------------------------------------------------
+| Declaração de Tipo | Não necessário. Dinamicamente tipado. | Obrigatório. Estaticamente tipado          |
+-----------------------------------------------------------------------------------------------------------
+| O que é 10?        | Um objeto criado na memória heap      | Um dado primitivo armazenado em 4 bytes em |
+|                    |                                       | Java ou 2 bytes em C                       |
+-----------------------------------------------------------------------------------------------------------
+| O que x contém?    | Referência para o Objeto 10           | Local de memória onde 10 está armazenado   |
+-----------------------------------------------------------------------------------------------------------
+| x = x + 1          | x e referenciado a um novo objeto com | x continua apontando para o mesmo local de |
+|                    | valor 11                              | memoria onde o valor foi alterado para 11  |
+-----------------------------------------------------------------------------------------------------------
+| x = 10             | Ambas, x e y são referenciadas para o | x e y são duas variáveis apontando para    |
+| y = 10             | mesmo objeto                          | locais diferentes da memória               |
+-----------------------------------------------------------------------------------------------------------
+
+# Relembrando
+
+- Métodos e variáveis são criadas na memória stack;
+- Os objetos e instancias são criadas na memória heap;
+- Um novo stack é criado durante a invocação de uma função ou método;
+- Stacks são destuidas sempre que uma função ou método retorna valor;
+- Garbage Collector é um mecanismo para limpar dead objects.
